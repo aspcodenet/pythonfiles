@@ -55,6 +55,13 @@ a.SetYear(1900)
 SaveAdsToFile(ads)
 
 
+def InputThreeParts():
+    while True:
+        action = input("Action:")
+        parts = action.split(' ')
+        if len(parts) == 3:
+            return parts
+        print("Jamen tre delar dummer")
 
 
 while True: # man inte matat in PAY
@@ -65,19 +72,17 @@ while True: # man inte matat in PAY
     #ABC123 500 Stefan
     while True:
         try:
-            action = input("Action:")
-            parts = action.split(' ')
-            if len(parts) == 3:
-                regno = parts[0]
-                theAd = getAd(ads, regno)   
-                if theAd == None:
-                    print("Bilen finns inte") 
-                else:
-                    belopp = int(parts[1])
-                    namn = parts[2]
-                    break
+            parts = InputThreeParts()
+            regno = parts[0]
+            theAd = getAd(ads, regno)   
+            if theAd == None:
+                print("Bilen finns inte") 
+            else:
+                belopp = int(parts[1])
+                namn = parts[2]
+                break
         except:
-            print("FEL")
+            print("Fel värden")
 
     print(f"{namn} bjuder {belopp} på {regno}")
     fileName = f"{regno}.txt"
